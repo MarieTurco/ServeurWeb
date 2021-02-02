@@ -30,7 +30,7 @@ def traiter_formulaire():
     valeur = request.forms.get("parametre1")
     return valeur
 
-#Formulaire 2
+#Formulaire 2 rr
 
 @app.get("/formulaire2")
 def afficher_formulaire2():
