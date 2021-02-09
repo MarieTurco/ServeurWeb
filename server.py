@@ -56,5 +56,29 @@ def traiter_formulaire2():
     fname=request.forms.get("fname")  #fname="somme"
     dic= {'somme': sum, "moyenne": np.mean}
     f=dic[fname]
-    print(f)
     return [str(valeur2),"""<br/><br/>""",str(f(valeur2))]
+
+
+#Tests
+
+@app.get("/doubler")
+def calcul():
+    return """
+     <form action="/doubler" method="post">
+            valeur <input name="valeur" type="text" />
+        <input value="Ajouter" type="submit" />
+        </form>
+    """
+
+
+@app.post("/doubler")
+def doubler_valeur():
+    data = request.forms
+    valeur = int(data.get("valeur"))
+    double = valeur * 2
+    res = {"valeur": valeur, "double": double}
+    #import ipdb; ipdb.set_trace()
+    return template("{{valeur}} * 2 = <br/> {{double}}", valeur=valeur, double=double)
+
+
+
