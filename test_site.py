@@ -16,3 +16,11 @@ def test_double():
     form["valeur"] = "32"
     res = form.submit()
     assert "64" in res.ubody  
+
+
+#Tests json
+
+def test_double_json():
+    reponse = testapp.post_json("/doubler.json", {"valeur": 43} )
+
+    assert reponse.json["double"] == 86

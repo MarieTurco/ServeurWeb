@@ -81,4 +81,12 @@ def doubler_valeur():
     return template("{{valeur}} * 2 = <br/> {{double}}", valeur=valeur, double=double)
 
 
+# Tests json
 
+@app.post('/doubler.json')
+def doubler_valeur_json():
+    data = request.json 
+    valeur = int(data.get("valeur"))
+    res = {'double': valeur*2}
+    return res
+  
