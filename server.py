@@ -1,4 +1,5 @@
 from bottle import Bottle, run
+import numpy as np
 
 app = Bottle()
 
@@ -39,7 +40,7 @@ def afficher_formulaire2():
             Liste1 <input name="parametre2" type="text"
             sep=";" />
         <br/>
-            Liste2 <input name="parametre2" type="text"/>
+            Fonction <input name="fname" type="text"/>
             <br/><input value="Ajouter" type="submit" />
         </form>
     """
@@ -51,4 +52,9 @@ def traiter_formulaire2():
     valeur = valeur.split(';')
     valeur2=[float(v) for v in valeur]
     print(valeur2)
-    return str(valeur2)
+      
+    fname=request.forms.get("fname")  #fname="somme"
+    dic= {'somme': sum, "moyenne": np.mean}
+    f=dic[fname]
+    print(f)
+    return [str(valeur2),"""<br/><br/>""",str(f(valeur2))]
